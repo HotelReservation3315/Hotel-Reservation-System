@@ -1,25 +1,18 @@
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.sql.*;
 
 
 public class MainFrame extends JFrame implements ActionListener{
@@ -36,6 +29,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	JLabel specificRoomLabel;
 	JLabel locationOfRoomLabel;
 	JLabel numberOfPeopleLabel;
+	JLabel additionalChargesLabel;
 	
 	JLabel checkOutTitle;
 	JLabel roomNumberLabel;
@@ -48,12 +42,22 @@ public class MainFrame extends JFrame implements ActionListener{
 	final JTextField checkInTextField;
 	final JTextField checkOutTextField;
 	final JTextField roomNumberTextField;
+	final JTextField telephoneTextField;
+	final JTextField roomServiceTextField;
+	final JTextField equestrianAdventureTextField;
+	final JTextField restaurantTextField;
 	
 	JButton CheckAvailabilityButton;
 	JButton CheckInOption;
 	JButton CheckOutOption;
 	JButton toMainScreenButton;
 	JButton proceedToCheckout;
+	JButton generateBill;
+	
+	JCheckBox telephoneCheckBox;
+	JCheckBox roomServiceCheckBox;
+	JCheckBox equestrianAdventureCheckBox;
+	JCheckBox restaurantCheckBox;
 	
 	
 	public MainFrame(){
@@ -156,8 +160,8 @@ public class MainFrame extends JFrame implements ActionListener{
 		 CheckAvailabilityButton.setVisible(false);
 		 CheckAvailabilityButton.addActionListener(this);
 		 
-		 toMainScreenButton = new JButton("Go Back");
-		 toMainScreenButton.setBounds(320, 320, 100, 25);
+		 toMainScreenButton = new JButton("To Main Screen");
+		 toMainScreenButton.setBounds(300, 320, 125, 25);
 		 toMainScreenButton.setVisible(false);
 		 toMainScreenButton.addActionListener(this);
 		 
@@ -171,9 +175,9 @@ public class MainFrame extends JFrame implements ActionListener{
 		 
 		 
 		 checkOutTitle = new JLabel("CHECK-OUT:");
-			checkOutTitle.setFont(new Font("Courier", Font.BOLD, 17));
-			checkOutTitle.setBounds(10, 0, 100, 50);
-			checkOutTitle.setVisible(false);
+		 checkOutTitle.setFont(new Font("Courier", Font.BOLD, 17));
+		 checkOutTitle.setBounds(10, 0, 100, 50);
+		 checkOutTitle.setVisible(false);
 		 
 		 roomNumberLabel = new JLabel("Room Number:"); 
 		 roomNumberTextField = new JTextField(10);
@@ -186,9 +190,54 @@ public class MainFrame extends JFrame implements ActionListener{
 		 proceedToCheckout = new JButton("Continue");
 		 proceedToCheckout.setBounds(10, 80, 120, 25);
 		 proceedToCheckout.setVisible(false);
-		 proceedToCheckout.addActionListener(this);	
+		 proceedToCheckout.addActionListener(this);
+		 
+		 additionalChargesLabel = new JLabel("Additional Charges:");
+		 additionalChargesLabel.setFont(new Font("Courier", Font.BOLD, 17));
+		 additionalChargesLabel.setBounds(120, 0, 200, 50);
+		 additionalChargesLabel.setVisible(false);
+		 
+		 telephoneCheckBox = new JCheckBox("Telephone");
+		 telephoneTextField = new JTextField(10);
+		 
+		 telephoneCheckBox.setBounds(10, 40, 90, 20);
+		 telephoneCheckBox.setVisible(false);
+		 	telephoneTextField.setBounds(10,60,80,20);
+		 	telephoneTextField.setVisible(false);
+		 	telephoneTextField.setText("0");
+		 
+		 roomServiceCheckBox = new JCheckBox("Room Service");
+		 roomServiceTextField = new JTextField(10);
+		 
+		 roomServiceCheckBox.setBounds(10, 40*2, 110, 20);
+		 roomServiceCheckBox.setVisible(false);
+		 	roomServiceTextField.setBounds(10,100,80,20);
+		 	roomServiceTextField.setVisible(false);
+		 	roomServiceTextField.setText("0");
+		 
+		 equestrianAdventureCheckBox = new JCheckBox("Equestrian Adventure");
+		 equestrianAdventureTextField = new JTextField(10);
+		 
+		 equestrianAdventureCheckBox.setBounds(10, 40*3, 150, 20);
+		 equestrianAdventureCheckBox.setVisible(false);
+		 	equestrianAdventureTextField.setBounds(10,140,80,20);
+		 	equestrianAdventureTextField.setVisible(false);
+		 	equestrianAdventureTextField.setText("0");
 		 	
+		 restaurantCheckBox = new JCheckBox("Restaurant Service");
+		 restaurantTextField = new JTextField(10);
+		 
+		 restaurantCheckBox.setBounds(10, 40*4, 140, 20);
+		 restaurantCheckBox.setVisible(false);
+		 	restaurantTextField.setBounds(10,180,80,20);
+		 	restaurantTextField.setVisible(false);
+		 	restaurantTextField.setText("0");
 		 	
+		 generateBill = new JButton("Generate Bill");
+		 generateBill.setBounds(10, 320, 120, 25);
+		 generateBill.setVisible(false);
+		 generateBill.addActionListener(this);
+		 
 		 
 		 JPanel p = new JPanel();
 		 p.setLayout(null);
@@ -216,6 +265,16 @@ public class MainFrame extends JFrame implements ActionListener{
 		 		p.add(roomNumberLabel);
 		 		p.add(roomNumberTextField);
 		 		p.add(proceedToCheckout);
+		 		p.add(additionalChargesLabel);
+		 		p.add(telephoneCheckBox);
+		 		p.add(telephoneTextField);
+		 		p.add(roomServiceCheckBox);
+		 		p.add(roomServiceTextField);
+		 		p.add(equestrianAdventureCheckBox);
+		 		p.add(equestrianAdventureTextField);
+		 		p.add(restaurantCheckBox);
+		 		p.add(restaurantTextField);
+		 		p.add(generateBill);
 		 				 	
 		 
 		 frame.add(p); 
@@ -239,6 +298,46 @@ public class MainFrame extends JFrame implements ActionListener{
 		 			checkOutTextField.setText(selectedDate); 
 		 		} 
 		 	});
+		 	
+		 	telephoneCheckBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(telephoneCheckBox.isSelected()){
+			 			telephoneTextField.setVisible(true);
+			 		}else{
+			 			telephoneTextField.setVisible(false);
+			 		}
+				}
+			});
+		 	
+		 	roomServiceCheckBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(roomServiceCheckBox.isSelected()){
+			 			roomServiceTextField.setVisible(true);
+			 		}else{
+			 			roomServiceTextField.setVisible(false);
+			 		}
+				}
+			});
+		 	
+		 	equestrianAdventureCheckBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(equestrianAdventureCheckBox.isSelected()){
+			 			equestrianAdventureTextField.setVisible(true);
+			 		}else{
+			 			equestrianAdventureTextField.setVisible(false);
+			 		}
+				}
+			});
+		 	
+		 	restaurantCheckBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(restaurantCheckBox.isSelected()){
+			 			restaurantTextField.setVisible(true);
+			 		}else{
+			 			restaurantTextField.setVisible(false);
+			 		}
+				}
+			});
 		 				
 		paintComponents(getGraphics());
 		
@@ -317,8 +416,37 @@ public void actionPerformed(ActionEvent event) {
 		roomNumberTextField.setVisible(false);
 		proceedToCheckout.setVisible(false);
 		
+		additionalChargesLabel.setVisible(false);
+		telephoneCheckBox.setVisible(false);
+		telephoneCheckBox.setSelected(false);
+		telephoneTextField.setVisible(false);
+		roomServiceCheckBox.setVisible(false);
+		roomServiceCheckBox.setSelected(false);
+		roomServiceTextField.setVisible(false);
+		equestrianAdventureCheckBox.setVisible(false);
+		equestrianAdventureCheckBox.setSelected(false);
+		equestrianAdventureTextField.setVisible(false);
+		restaurantCheckBox.setVisible(false);
+		restaurantCheckBox.setSelected(false);
+		restaurantTextField.setVisible(false);
+		generateBill.setVisible(false);
+		
 		CheckInOption.setVisible(true);
 		CheckOutOption.setVisible(true);
+	}
+	
+	if(event.getSource() == proceedToCheckout){
+		
+		roomNumberLabel.setVisible(false);
+		roomNumberTextField.setVisible(false);
+		proceedToCheckout.setVisible(false);
+		
+		additionalChargesLabel.setVisible(true);
+		telephoneCheckBox.setVisible(true);
+		roomServiceCheckBox.setVisible(true);
+		equestrianAdventureCheckBox.setVisible(true);
+		restaurantCheckBox.setVisible(true);
+		generateBill.setVisible(true);
 	}
 	
 	if(event.getSource() == CheckAvailabilityButton){
